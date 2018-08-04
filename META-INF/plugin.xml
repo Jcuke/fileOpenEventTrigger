@@ -24,31 +24,23 @@
   <depends>com.intellij.modules.lang</depends>
   -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
 
   <application-components>
-    <!-- Add your application components here -->
+
   </application-components>
 
   <project-components>
-    <!-- Add your project components here -->
+    <component>
+      <implementation-class>com.etg.ProjComponent</implementation-class>
+    </component>
   </project-components>
 
   <actions>
-    <!-- Add your actions here -->
-    <action id="openEventTrigger" class="com.etg.openEventTrigger" text="openEventTrigger"
-            description="openEventTrigger">
-      <add-to-group group-id="ToolsMenu" anchor="first"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt O" second-keystroke="shift ctrl alt O"/>
-    </action>
   </actions>
 
-  <application-components>
+  <!--<extensions defaultExtensionNs="com.intellij">-->
+    <!--&lt;!&ndash;<projectOpenProcessor implementation="MyBeanClass1" />&ndash;&gt;-->
+    <!--<editorFactory implementation="com.etg.AppComponent"/>-->
+  <!--</extensions>-->
 
-    <component>
-      <implementation-class>com.etg.MainComponent</implementation-class>
-    </component>
-  </application-components>
 </idea-plugin>
