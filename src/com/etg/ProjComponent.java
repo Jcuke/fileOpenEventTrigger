@@ -1,5 +1,10 @@
 package com.etg;
 
+import com.intellij.ide.DataManager;
+import com.intellij.ide.actions.ShowTipsAction;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerAdapter;
@@ -25,7 +30,7 @@ public class ProjComponent implements ProjectComponent {
     public void fileOpenEventReg(){
 
         ProjectManager projectManager = ProjectManagerImpl.getInstance();
-        Project e = projectManager.getOpenProjects()[0];
+        final Project e = projectManager.getOpenProjects()[0];
         System.out.println(e.getBasePath());
         System.out.println(e.getName());
 
@@ -36,6 +41,16 @@ public class ProjComponent implements ProjectComponent {
                 try {
                     String result = new BufferedReader(new InputStreamReader(file.getInputStream())).lines().collect(Collectors.joining(System.lineSeparator()));
                     System.out.println(result);
+
+                    //DataContext dc = DataManager.getDataContext();
+                    ActionManager am = ActionManager.getInstance();
+                    System.out.println(am);
+                    //AboutAction aa = (AboutAction) ActionManager.getInstance().getAction("About");
+                    //aa.actionPerformed(AnActionEvent.createFromDataContext("About", new Presentation(), DataManager.getInstance().getDataContext()));
+
+                    ShowTipsAction aa = (ShowTipsAction) ActionManager.getInstance().getAction("WelcomeScreen.ShowTips");
+                    aa.actionPerformed(AnActionEvent.createFromDataContext("WelcomeScreen.ShowTips", new Presentation(), DataManager.getInstance().getDataContext()));
+
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
